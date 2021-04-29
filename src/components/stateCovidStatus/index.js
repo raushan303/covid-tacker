@@ -58,8 +58,8 @@ function Index({ getCovidData, getCovidDataRes, match }) {
   };
 
   const handleSelectChange = (val, child) => {
-    history.push(`/state/${val}`);
-    getDistrictData(val);
+    history.push(`/state/${child.props.code}`);
+    getDistrictData(child.props.code);
   };
 
   return (
@@ -68,7 +68,9 @@ function Index({ getCovidData, getCovidDataRes, match }) {
       <div className='select-box-container'>
         <Select showSearch onSearch={onSearch} onChange={handleSelectChange}>
           {searchData.map((stateObj) => (
-            <Option key={stateObj.code} value={stateObj.code}>{stateObj.name}</Option>
+            <Option key={stateObj.code} code={stateObj.code} value={stateObj.name}>
+              {stateObj.name}
+            </Option>
           ))}
         </Select>
       </div>
